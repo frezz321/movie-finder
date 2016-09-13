@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Filmlizt</title>
+        <!--Boostrap's CSS-->
+        <link rel="stylesheet" type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <!--Custom CSS-->
+        <link rel="stylesheet" type="text/css" href="./css/style.css">
+    </head>
+    <body>
+        <div class="container" id="page-container">
+            <h1 id="app-name">
+                <span class="glyphicon glyphicon-film"></span> Filmlizt
+            </h1>
+
+            <h2 id="page-header">
+                Search and store movies into your watch list.
+            </h2>
+            <img id="selected-img" src="">
+            <div class="btn-wrapper">
+                title: <input id="movie_title" type="text" name="Title" value=""><br>
+                <input id=submitbtn type="submit" value="Submit">
+
+        </div>
+        <!-- 
+            NB: You generally do not want to publically expose the server structure (eg. ./node_modules/...)
+            will sort that in later bootcamps with task-runners and the like.
+            For now this is just a demonstration.
+            Alternatively can use CDNs for bootstrap/jquery
+        -->
+
+        <!--jQuery Script-->
+        <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+        <!--Bootstrap Script-->
+        <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!--SoundCloud SDK-->
+        <script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
+        <!--Custom Script-->
+        <script src="./js/main.js"></script>
+    </body>
+</html>
