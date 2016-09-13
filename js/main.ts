@@ -5,6 +5,7 @@ var searchmovie: Movie;
 
 // Get elements from DOM
 var pageheader = $("#page-header")[0]; //note the [0], jQuery returns an object, so to get the html DOM object we need the first item in the object
+var pageheader2 = $("#page-header2")[0];
 var pagecontainer = $("#page-container")[0]; 
 
 // The html DOM object has been casted to a input element (as defined in index.html) as later we want to get specific fields that are only avaliable from an input element object
@@ -14,17 +15,18 @@ var submitbtn = $("#submitbtn")[0]; //You dont have to use [0], however this jus
 // Register button listeners
 submitbtn.addEventListener("click", function () { // file has been picked
     pageheader.innerHTML = "Just a sec while we are searching...";
-    sendmovierequest(function(results){
+    sendmovierequest(function(results, poster){
         pageheader.innerHTML = results.title;
+        pageheader2.innerHTML = results.overview;
         var img : HTMLImageElement = <HTMLImageElement>  $("#selected-img")[0];//getting a predefined area on our webpage to show the emoji
-    img.src = ; //link that area to the emoji of our currentMood.
+    img.src = "http://image.tmdb.org/t/p/w500" + poster; //link that area to the emoji of our currentMood.
     img.style.display = "block"; //just some formating of the emoji's location
 
     //Display song refresh button
     submitbtn.style.display = "inline";
     //Remove offset at the top
     pagecontainer.style.marginTop = "20px";
-         pageheader.innerHTML = results.overview;
+
         
 
     });
@@ -41,17 +43,20 @@ function sendmovierequest(callback) : void {
     })
         .done(function (data) {
             if (data.results.length != 0) { 
-                var results = data.results[0];
-                callback(results);
+               var results = data.results[0];
+               callback(results, results.poster_path);
+
             } else {
-                pageheader.innerHTML = "No results for " + moviefinder + ".";
+                pageheader.innerHTML = "No results for " + moviefinder.value + ".";
             }
         })
         .fail(function (error) {
             pageheader.innerHTML = "Sorry, something went wrong. :( Try again in a bit?";
             console.log(error.getAllResponseHeaders());
         });
+
 }
+
 
 
 class Movie {

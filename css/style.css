@@ -33,6 +33,11 @@ h2#page-header {
     padding-bottom:20px;
 }
 
+h3#page-header2 {
+    padding-top:20px;
+    padding-bottom:20px;
+}
+
 body #page-container {
     margin-top: 150px;
     text-align: center;
