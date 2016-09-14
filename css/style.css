@@ -47,15 +47,5 @@ body #page-container {
     padding: 20px 0;
 }
 
-input#my-file-selector {
-    display:none;
-}
 
-#musicplayer{
-    padding:20px;
-    display:none;
-}
 
-h4#track-name {
-    display:none;
-}

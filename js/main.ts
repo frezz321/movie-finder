@@ -1,41 +1,33 @@
 
-declare var SC:any; // Magic - tells that there is some variable SC out there (SC is from the SoundCloud script file)
 
-var searchmovie: Movie;
-
-// Get elements from DOM
-var pageheader = $("#page-header")[0]; //note the [0], jQuery returns an object, so to get the html DOM object we need the first item in the object
+var pageheader = $("#page-header")[0]; 
 var pageheader2 = $("#page-header2")[0];
 var pagecontainer = $("#page-container")[0]; 
 
-// The html DOM object has been casted to a input element (as defined in index.html) as later we want to get specific fields that are only avaliable from an input element object
-var moviefinder: HTMLInputElement = <HTMLInputElement> $("#movie_title")[0]; 
-var submitbtn = $("#submitbtn")[0]; //You dont have to use [0], however this just means whenever you use the object you need to refer to it with [0].
 
-// Register button listeners
-submitbtn.addEventListener("click", function () { // file has been picked
+var moviefinder: HTMLInputElement = <HTMLInputElement> $("#movie_title")[0]; 
+var submitbtn = $("#submitbtn")[0]; 
+
+
+submitbtn.addEventListener("click", function () {
     pageheader.innerHTML = "Just a sec while we are searching...";
     sendmovierequest(function(results, poster){
         pageheader.innerHTML = results.title;
         pageheader2.innerHTML = results.overview;
-        var img : HTMLImageElement = <HTMLImageElement>  $("#selected-img")[0];//getting a predefined area on our webpage to show the emoji
-    img.src = "http://image.tmdb.org/t/p/w500" + poster; //link that area to the emoji of our currentMood.
-    img.style.display = "block"; //just some formating of the emoji's location
+        var img : HTMLImageElement = <HTMLImageElement>  $("#selected-img")[0];
+    img.src = "http://image.tmdb.org/t/p/w500" + poster; 
+    img.style.display = "block"; 
 
-    //Display song refresh button
+    
     submitbtn.style.display = "inline";
-    //Remove offset at the top
+    
     pagecontainer.style.marginTop = "20px";
-
-        
 
     });
 
 });
 
 
-// Refer to http://stackoverflow.com/questions/35565732/implementing-microsofts-project-oxford-emotion-api-and-file-upload
-// and code snippet in emotion API documentation
 function sendmovierequest(callback) : void {
     $.ajax({
         url: "https://api.themoviedb.org/3/search/movie?query=" + moviefinder.value +"&external_source=imdb_id&api_key=101d42ee5443e5b374710ce0dbd1eb7f",
@@ -55,20 +47,6 @@ function sendmovierequest(callback) : void {
             console.log(error.getAllResponseHeaders());
         });
 
-}
-
-
-
-class Movie {
-    name: string;
-    ID: string;
-    poster: string;
-    plot: string;
-    constructor(public movie, public image, public movieplot) {
-        this.name = movie;
-        this.poster = image;
-        this.plot = movieplot;
-    }
 }
 
 
